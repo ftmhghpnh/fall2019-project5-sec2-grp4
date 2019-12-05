@@ -1,5 +1,5 @@
 # Project: 
 ### Data folder
 
-The data directory contains data used in the analysis. This is treated as read only; in paricular the R/python files are never allowed to write to the files in here. Depending on the project, these might be csv files, a database, and the directory itself may have subdirectories.
+The dataset including 20 landmarks, and for each landmark in including 4890 image taken from different angles and different time. We split the data into 80% for training data and 20% for testing data.
 
