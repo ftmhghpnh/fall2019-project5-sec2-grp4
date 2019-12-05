@@ -2,7 +2,7 @@
 
 Term: Fall 2018
 
-+ Team # 4
++ Team # Group 4
 + Projec title: Landmark Recognition Challenge
 
 + Team members
