@@ -1,6 +1,8 @@
 ---
-title: "Project 5"
-output: html_document
+title: "Project 5 - Group 4"
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -53,9 +55,11 @@ for c, _ in selected_classes:
     train_images = images[:selected_classes[-1][1]][:train_size]
     test_images = images[:selected_classes[-1][1]][train_size:]
     for img in train_images:
-        shutil.copy(os.path.join(initial_train_path, c, img), os.path.join(path, 'train', str(idx), img))
+        shutil.copy(os.path.join(initial_train_path, c, img), os.path.join
+        (path, 'train', str(idx), img))
     for img in test_images:
-        shutil.copy(os.path.join(initial_train_path, c, img), os.path.join(path, 'test', str(idx), img))
+        shutil.copy(os.path.join(initial_train_path, c, img), os.path.join
+        (path, 'test', str(idx), img))
     idx += 1
 ```
 
@@ -122,8 +126,10 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.model_selection import cross_val_predict
 from sklearn.preprocessing import StandardScaler
 
-train_df=pandas.read_csv('C:/Users/tb2579/Documents/MA Statistics/Applied Data Analysis/Project 5/TrainFeatures.csv')
-test_df=pandas.read_csv('C:/Users/tb2579/Documents/MA Statistics/Applied Data Analysis/Project 5/TestFeatures.csv')
+train_df=pandas.read_csv('C:/Users/tb2579/Documents/MA Statistics/
+Applied Data Analysis/Project 5/TrainFeatures.csv')
+test_df=pandas.read_csv('C:/Users/tb2579/Documents/
+MA Statistics/Applied Data Analysis/Project 5/TestFeatures.csv')
 
 train_features=train_df.iloc[:,0:1152]
 y_train=train_df["Label"]
@@ -194,6 +200,8 @@ print("--- %s seconds ---" % (time.time() - start_time))
 
 ```
 ### Simple CNN:
+
+![an image caption Source: Architecture of simple CNN](../figs/simpel_cnn.jpg)
 ```{python engine.path='/anaconda3/bin/python', message=FALSE, warning=FALSE}
 model = models.Sequential()
 model.add(layers.Conv2D(128, (3, 3), activation='relu', input_shape=(128, 128, 3)))
@@ -205,12 +213,18 @@ model.add(layers.Flatten())
 model.add(layers.Dense(32, activation='relu'))
 model.add(layers.Dense(22, activation='softmax'))
 
-model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', 
+metrics=['accuracy'])
 
-history = model.fit(np.array(train_imgs), np.array(train_labels), epochs=10, shuffle=True, validation_data=(np.array(test_imgs), np.array(test_labels)))
+history = model.fit(np.array(train_imgs), np.array(train_labels), 
+epochs=10, shuffle=True, validation_data=(np.array(test_imgs), np.array(test_labels)))
 ```
 
 ### CNN With Xception feature extraction:
+
+![an image caption Source: Architecture of Xcption-based model.](../figs/comp_cnn.jpg)
+
+
 #### Extracting features with pre-trained Xception
 ```{python engine.path='/anaconda3/bin/python', message=FALSE, warning=FALSE}
 class XceptionBottleneck(tf.keras.Model):
@@ -219,8 +233,10 @@ class XceptionBottleneck(tf.keras.Model):
         super(XceptionBottleneck, self).__init__()
 
         # Define xception layer (include_top=False and use imagenet weights),
-        # see: https://keras.io/applications/#models-for-image-classification-with-weights-trained-on-imagenet
-        self.xception_layers = Xception(weights='imagenet', include_top=False, input_shape=(128, 128, 3))
+        # see: https://keras.io/applications/#models-for-image-classification-
+        with-weights-trained-on-imagenet
+        self.xception_layers = Xception(weights='imagenet', include_top=False, 
+        input_shape=(128, 128, 3))
 
         # Define pooling GlobalAveragePooling2D
         # see: https://keras.io/layers/pooling/
@@ -241,7 +257,8 @@ def cache_bottleneck_layers(numpy_data, batch_size, device):
     with tf.device(device):
         xception_out = XceptionBottleneck()
         for batch_num, image in enumerate(dataset):
-            print('\rComputing bottle neck layers... batch {} of {}'.format(batch_num+1, n_samples//batch_size), end="")
+            print('\rComputing bottle neck layers... batch {} of {}'.
+            format(batch_num+1, n_samples//batch_size), end="")
 
             result = xception_out(image)
             result = result.numpy()
@@ -254,7 +271,8 @@ start_time = time.time()
 
 # device = "gpu:0" if tfe.num_gpus() else "cpu:0"
 device = "cpu:0"
-bottle_necks = cache_bottleneck_layers(np.array(train_imgs, dtype=np.float32), batch_size=50, device=device)
+bottle_necks = cache_bottleneck_layers(np.array(train_imgs, dtype=np.float32), 
+batch_size=50, device=device)
 
 print("--- %s seconds ---" % (time.time() - start_time))
 
@@ -269,7 +287,8 @@ np.savez(train_save_path, bottle_necks=bottle_necks, labels=np.array(train_label
 
 start_time = time.time()
 
-bottle_necks = cache_bottleneck_layers(np.array(test_imgs, dtype=np.float32), batch_size=50, device=device)
+bottle_necks = cache_bottleneck_layers(np.array(test_imgs, dtype=np.float32), 
+batch_size=50, device=device)
 
 print("--- %s seconds ---" % (time.time() - start_time))
 
@@ -286,8 +305,10 @@ class XceptionClassifier(tf.keras.Model):
     def __init__(self, n_classes):
         super(XceptionClassifier, self).__init__()
         # Define the layer(s) you would like to use for your classifier
-        self.dense_layer_1 = tf.keras.layers.Dense(units=20*n_classes, activation=tf.keras.activations.relu)
-        self.dense_layer_2 = tf.keras.layers.Dense(units=5*n_classes, activation=tf.keras.activations.relu)
+        self.dense_layer_1 = tf.keras.layers.Dense(units=20*n_classes, 
+        activation=tf.keras.activations.relu)
+        self.dense_layer_2 = tf.keras.layers.Dense(units=5*n_classes, 
+        activation=tf.keras.activations.relu)
         self.dense_layer_3 = tf.keras.layers.Dense(units=n_classes)
 
     def call(self, inputs):
@@ -315,7 +336,8 @@ train_loss_history = []
 train_images_dataset = tf.data.Dataset.from_tensor_slices(train_bottle_necks)
 train_labels_dataset = tf.data.Dataset.from_tensor_slices(train_labels)
 train_dataset = tf.data.Dataset.zip((train_images_dataset, train_labels_dataset))
-train_dataset = train_dataset.batch(batch_size).shuffle(buffer_size=train_bottle_necks.shape[0])
+train_dataset = train_dataset.batch(batch_size).shuffle
+(buffer_size=train_bottle_necks.shape[0])
 
 x_classifier = XceptionClassifier(n_classes=20)
 optimizer = tf.optimizers.Adam(learning_rate)
@@ -328,7 +350,8 @@ with tf.device(device):
             with tf.GradientTape() as tape:
                 # Compute logits
                 logits = x_classifier(images)
-                xe_loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=labels, logits=logits))
+                xe_loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits
+                (labels=labels, logits=logits))
 
             train_loss_history.append(xe_loss.numpy())
             # Compute gradient and apply gradients
@@ -337,7 +360,8 @@ with tf.device(device):
 #                                       , global_step=tf.compat.v1.train.get_or_create_global_step())
 
             if batch % 10 == 0:
-                print('\rEpoch: {}, Batch: {}, Loss: {}'.format(epoch, batch, train_loss_history[-1]), end='')
+                print('\rEpoch: {}, Batch: {}, Loss: {}'.format(epoch, batch, 
+                train_loss_history[-1]), end='')
 print("--- %s seconds ---" % (time.time() - start_time))
 
 
@@ -360,3 +384,6 @@ print(train_accuracy, test_accuracy)
 
 ```
 
+### Results : 
+
+![an image caption Source: Result table.](../figs/result.png)
