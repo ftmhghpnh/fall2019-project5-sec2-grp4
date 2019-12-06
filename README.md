@@ -17,9 +17,7 @@ This project we tried to build some models to recognize and classify the landmar
 We did this project doing base and advanced model. For the base model, we extractd the HOG features and then used SGD to classify them. 
 For advance model, first we used a 3 layered CNN and check the test and train accuracy. Second, we used a pretrained model of Xception and extracted features, and then used a 3 layered fully connected network for classification.
 
-You can find our presentation [here](doc/project5_group04.pdf).
-
-Also, the main file is [here](doc/Main.pdf).
+You can find our presentation [here](doc/project5_group04.pdf). Also, the main file is [here](doc/Main.pdf).
 	
 **Contribution statement**:
 + Fateme Sadat Haghpanah (Team Leader):
