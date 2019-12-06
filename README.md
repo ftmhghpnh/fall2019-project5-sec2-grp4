@@ -18,6 +18,7 @@ We did this project doing base and advanced model. For the base model, we extrac
 For advance model, first we used a 3 layered CNN and check the test and train accuracy. Second, we used a pretrained model of Xception and extracted features, and then used a 3 layered fully connected network for classification.
 
 You can find our presentation [here](doc/project5_group04.pdf).
+Also, the main file is [here](doc/Main.pdf).
 	
 **Contribution statement**:
 + Fateme Sadat Haghpanah (Team Leader):
