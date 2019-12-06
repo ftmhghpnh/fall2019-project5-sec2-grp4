@@ -9,19 +9,29 @@ Term: Fall 2018
 	+ Fateme Sadat Haghpanah (Team Leader)
 	+ Thomson Batidzirai
 	+ Mo Yang
-	+ Yian Huang
 	
 + Project summary: 
 
-This project we tried to build some models to recognize the landmark. It is a really interesting topic, imaging when you find some awesome picture on the website, don’t you want to figure out the locations of those places? 
+This project we tried to build some models to recognize and classify the landmark. For those who are intrested in taking pictures of everthying, it could be really helpful to recognize the landmarks they pictured and remined them their name!
 
-There are more than 7800 images in the training dataset.  We built two models to compare the results, the baseline model and advance model: CNN. For the baseline model:
-For the CNN:
+We did this project doing base and advanced model. For the base model, we extractd the HOG features and then used SGD to classify them. 
+For advance model, first we used a 3 layered CNN and check the test and train accuracy. Second, we used a pretrained model of Xception and extracted features, and then used a 3 layered fully connected network for classification.
 
-Furthermore, we also tried to extract features from images by using HOG. Added the index of for each of the feature extract from the images. Lastly, merged them together to get training dataset and testing dataset.
-
+You can find our presentation [here](doc/project5_group04.pdf).
 	
-**Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
+**Contribution statement**:
++ Fateme Sadat Haghpanah (Team Leader):
+	- Sampling the data set and split it to test and train set
+	- Run two differnt advance model (CNN-based) 
+	- Make the main.Rmd and clean the github
+	- Create the team and lead the project
+	- Prepare the slides and do the presentation
++ Thomson Batidzirai
+	- Download the data set from Kaggle 
+	- Work on the base model ( extracting features and run the classification model)
++ Mo Yang
+	- Extract the features for base model (HOG features)
+	- edit some of the README.md files
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
