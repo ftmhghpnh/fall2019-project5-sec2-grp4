@@ -9,6 +9,7 @@ Term: Fall 2018
 	+ Fateme Sadat Haghpanah (Team Leader)
 	+ Thomson Batidzirai
 	+ Mo Yang
+	+ Yian Huang
 	
 + Project summary: 
 
@@ -32,6 +33,11 @@ You can find our presentation [here](doc/project5_group04.pdf). Also, the main f
 + Mo Yang
 	- Extract the features for base model (HOG features)
 	- edit some of the README.md files
+
++ Yian Huang
+	- descriptive analysis of 4132914 train data
+	- edit some of the README.md files
+ 
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
