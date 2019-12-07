@@ -36,7 +36,6 @@ You can find our presentation [here](doc/project5_group04.pdf). Also, the main f
 
 + Yian Huang
 	- descriptive analysis of 4132914 train data
-	- edit some of the README.md files
  
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
