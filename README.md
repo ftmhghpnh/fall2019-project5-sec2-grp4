@@ -6,7 +6,7 @@ Term: Fall 2018
 + Projec title: Landmark Recognition Challenge
 
 + Team members
-	+ Fateme Sadat Haghpanah (Team Leader)
+	+ **Fateme Sadat Haghpanah (Team Leader)**
 	+ Thomson Batidzirai
 	+ Mo Yang
 	+ Yian Huang
